@@ -1,4 +1,88 @@
 ---
-title: 'Exhibit B'
+title: 'Exhibit B — Technical and uptime requirements'
 ---
+
+*Version 1.0 — Effective November 20, 2025*
+
+## Scope and intent
+
+These requirements establish a practical baseline for operating an Autheo validator that safeguards network security and liveness without creating technical defaults for good-faith operators. Reasonable maintenance and force-majeure events are accounted for.
+
+## Minimum system profile
+
+a) Compute and storage. Enterprise-grade CPU, sufficient RAM for active chain state, and NVMe SSD sized for projected 12-month growth plus 25% headroom.
+
+b) Network. Stable connectivity with a static or reserved IP, properly configured firewall/NAT, and upstream bandwidth and latency sufficient for consensus and gossip.
+
+c) Operating system. A currently supported 64-bit Linux distribution with timely security updates, hardened per common benchmarks.
+
+d) Key custody. Hardware security module, secure enclave, or equivalent isolated signing (including remote signer) strongly recommended for validator keys.
+
+e) Time sync. NTP or equivalent time service must be enabled and healthy.
+
+## Software currency and patching
+
+a) Critical patches. Apply Autheo-designated critical security patches within 72 hours of notice.
+
+b) Routine updates. Apply non-critical, recommended client releases within 7 days of notice.
+
+c) Emergency directives. For a confirmed exploit or network instability, Autheo may issue an emergency directive with a shorter timeline; operators should make best efforts to comply promptly.
+
+## Uptime target and measurement
+
+a) Target. Monthly validator uptime target is 99.5%.
+
+b) Measurement. Uptime is measured by Autheo telemetry against the validator’s expected participation, including proposals, attestations, and commits as applicable.
+
+c) Exclusions. The following are excluded from uptime calculations:
+
+i) Planned maintenance up to 8 hours per calendar month with at least 24 hours advance notice via the operator’s designated channel or dashboard;
+
+ii) Force majeure events (regional power or ISP outages, natural disasters, widespread cloud provider incidents) outside the operator’s reasonable control;
+
+iii) Autheo-directed maintenance or upgrades;
+
+iv) Protocol-level incidents outside the operator’s control.
+
+d) Cure window. A single month below target does not constitute a breach if the operator implements reasonable remediation. Two consecutive months below target may require a corrective action plan; suspension is a last resort after notice and failure to cure.
+
+## Slashing and safety controls
+
+a) Double-sign prevention. Operators must use configurations and tooling intended to prevent double signing, such as sentry/validator architecture, quorum checks, and safe key migrations.
+
+b) Incident reporting. Suspected key compromise, double signing, or major misconfiguration must be reported to Autheo within 24 hours, with a mitigation plan.
+
+c) Recovery. Operators should maintain tested procedures for key rotation and machine failover.
+
+## Monitoring and logging
+
+a) Telemetry. Enable standard metrics and health probes for liveness, peer count, consensus participation, and resource utilization.
+
+b) Alerts. Configure alerts for process health, disk exhaustion, time drift, missed duties, and version skew.
+
+c) Retention. Maintain relevant logs and metrics for at least 90 days for incident analysis. Autheo may request excerpts for network security investigations.
+
+## Change management
+
+a) Grace periods. Autheo may update technical requirements to address security or performance. Unless designated critical or emergency, operators will have a reasonable grace period to comply.
+
+b) Compatibility. Operators should avoid untested kernel, driver, or client changes that could impair consensus participation.
+
+## Acceptable architectures
+
+a) Sentry pattern. Use of public sentry nodes in front of a private validator is recommended to reduce attack surface.
+
+b) Cloud or on-premises. Either is acceptable provided the security baseline, key custody, and uptime targets are met. Provider diversity for redundancy is encouraged.
+
+## Compliance and enforcement
+
+a) Good-faith standard. Autheo will apply these requirements in good faith, considering operator evidence of reasonable diligence.
+
+b) Progressive steps. If material non-compliance persists after notice and a reasonable cure period, Autheo may take proportionate steps permitted by the Agreement, up to temporary suspension to protect network integrity.
+
+c) No waiver of risk. Meeting these requirements does not eliminate protocol-level risks or penalties imposed by on-chain rules.
+
+## Documentation and contact
+
+Operators must keep current contact details on file and maintain an internal runbook covering deployment, upgrades, failover, and incident response. Autheo may distribute advisories and release notices through designated channels; operators are responsible for monitoring them.
 
